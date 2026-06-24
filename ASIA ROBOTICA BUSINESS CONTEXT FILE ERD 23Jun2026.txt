@@ -1,0 +1,235 @@
+### ASIA ROBOTICA BUSINESS CONTEXT FILE ###
+# 1. GENERAL INFO
+Basic facts & details about the business.
+* Business Name (Brand): Asia Robótica
+* Legal entity: AR TECNOLOGIA
+* TAX ID (Registered in Mexico RFC - Registro Federal de Contribuyentes): ATE081208V21
+* Legal address: Av. 8 de Julio 1626, Col. Morelos, Guadalajara, Jalisco, 44910, México
+* Inició operaciones como Persona Moral 8 de Octubre de 2008, sin embargo, ya operaba con otra razón social desde 2006.
+* Website URL: https://www.asiarobotica.com
+* Promesa de marca: "Equipos que si duran, soporte confiable"
+
+Empresa en números en 2026
+- 20 Años operando
+- 150+ empleados
+- 5 ubicaciones geográficas con 9 sites distribuido en las principales ciudades de México
+- 50% de tasa de recompra (1 de cada 2 clientes vuelve a comprar por lo menos una segunda máquina)
+- 4000+ Equipos instalados en todo México y Centro América
+
+* Description: Asia Robótica es una empresa B2B que se especializa en la comercialización de maquinaria CNC, incluyendo **Routers CNC**, **Láser CO2**, **Láser de Fibra**, **Dobladoras Hidráulicas de Metal**, **Soldadoras Láser de Fibra 
+Óptica**, **Equipos CNC para corte de textiles** y otros periféricos que complementan los equipos CNC tales como compresores especiales para corte láser, sistema de carga y descarga para láminas metálicas. Nuestra propuesta de valor incluye lo que llamamos esquema "llave en mano" donde el cliente no tiene que preocuparse por resolver el proceso de logística inbound, maniobras de descarga, instalación, selección de software CAM y operación. La compra incluye capacitación al operador y/o diseñador en el software CAM (incluido) y en el funcionamiento de su máquina además de cuestiones básicas de mantenimiento autónomo. Además es reconcida por su confiable soporte pos-venta ya sea remoto o presencial, según sea necesario. Los equipos se venden con garantía directa de la marca con plazos de entre 1 y 3 años (según el modelo). Además de equipos comercializar y distribuir equipos de alta precisión, la empresa ofrece cuenta con ** stock de refacciones y servicio técnico post-venta**, asegurando soporte continuo para sus clientes. 
+
+Con sede en **Guadalajara, Jalisco, México**, Asia Robotica extiende su presencia a través de salas de exhibición estratégicamente ubicadas en **Ciudad de México (CDMX)**, **Monterrey**, **San Luis Potosí**  y **Ocotlán**, ampliando así su alcance en todo el territorio nacional.  Fundada en **2006**, Asia Robótica nació para satisfacer una necesidad urgente de aumentar la competitividad principalmente de las industrias de **publicidad**, **metal mecánica** e **industria mueblera**, entre otras.
+
+Como pioneros en la comercialización de máquinas CNC y algunos equipos para metalmecanica, su objetivo ha sido potenciar a empresas emergentes mediante soluciones de corte, maquinado y grabado que **optimizan y eficientan procesos productivos**.  
+
+La innovación y desarrollo de nuevos productos son pilares fundamentales que permiten a la empresa ofrecer maquinaria de alta tecnología cuiando de manera activa la calidad de nuestros productos. Nuestros equipos y servicios ayudan a nuestros clientes a **reducir su ciclo de innovación e introducción de nuevos productos, optimizar el aprovechamiento de materiales, aumentar la calidad de sus productos, reducir costos de producción, minimizar tiempos y retrasos, reducir la dependencia de mano de obra especializada e incrementar la productividad" lo que como resultado les permite a nuestros clientes una mayor rentabilidad y competitividad en su mercado.
+
+
+Empresa mexicana dedicada a la fabricación y comercialización de maquinaria CNC de alta tecnología, brindando soluciones accesibles, confiables y con soporte integral.
+
+
+* Headquarters / Locations:
+   * Showroom: Av. 8 de Julio #1626, Col. Morelos, Guadalajara, Jalisco
+   * Oficinas administrativas: Juan Manuel 1401-B, Col. Villaseñor, Guadalajara, Jalisco
+   * Planta de Manufactura: Españoles #91, Col. La Duraznera, Tlaquepaque, Jalisco
+   * Sucursales: Ocotlán, CDMX, Monterrey, San Luis Potosí.
+   * Operating Hours: Lunes a viernes de 9AM a 6PM
+   * Founded: 2005
+   * Legal Structure: AR TECNOLOGÍA S.A. DE C.V.
+   * Contact Email: ventas@asiarobotica.com
+   * Phone Number: (33) 3811 6195 (GDL), (33) 2196 5894 (Ocotlán), (55) 5600 9095 (CDMX), (81) 2510 7465 (MTY), (44) 4678 9890 (SLP), WhatsApp: (33) 3496 5374
+________________
+
+
+# 2. BUSINESS CULTURE
+What makes the company tick? Core attributes, mindset, personality.
+   * Core Attributes:
+   * - **Integridad**: Siempre velar por el beneficio de nuestros clientes y empleados, logrando nuestro "bottomline" a través de relaciones comerciales de largo plazo gana - gana.
+   * - **Empatía**: Nos ponemos en los zapatos de nuestros clientes, buscando entender sus necesidades productivas para buscar ofrecer el mayor valor posible.
+   * - **Pasión**: Impulsar la excelencia y el gusto por todo lo que hacemos.
+   * - **Perseverancia**: No nos rendimos hasta que se logren los objetivos internos y externos.
+   * - **Respeto**: Fomentar el profesionalismo y el respeto mutuo en todas las interacciones.
+   * - **Calidad**: Equipos fabricados con componentes y mano de obra de calidad y confiabilidad comprobada.
+
+   * Mission Statement: Empoderar a los clientes con las alternativas más confiables para automatizar procesos como el corte y maquinado en una amplia variedad de materiales.
+   * Vision: Mantenernos como la empresa referencia del mercado a través de la pasión por la innovación, ofreciendo equipos duraderos con un soporte técnico oportuno y confiable que nos separe de la competencia.
+
+   * Culture Highlights:
+   * Cultura basada en valores humanos y excelencia técnica
+   * Acompañamiento especializado en todas las etapas del cliente, desde la logística de entrega hasta el soporte técnico para un óptimo funcionamiento de su maquinaria
+________________
+
+
+# 3. CORE COMPENTENCES
+What is they main differenciator in your company vs. your competitors?
+   * Excelente reputación en soporte técnico con una tasa de re-venta de por lo menos un 50% (1 de cada 2 clientes nos vuelven a comprar).
+   * Tasa elevada de recomendación entre clientes activos.
+   * Nos preocupa más nuestra reputación que generar 1 venta.
+
+# 4. PRODUCT / SERVICE MAP
+High-level listing of products/services; keep descriptions brief. Then rank them in customer ascension order.
+   * Router CNC Std: Modelos: Maker DiY, Shop Pro, ShopPro ATC, Works ATC, ATC Beast, soluciones para madera y tableros derivados de la misma, resinas plásticas y materiales compuestos NO ferrosos
+   * Router CNC para publicidad: MultiHead soluciones para madera, cartón, resinas plásticas, aluminio y materiales compuestos no ferrosos.
+   * CNC para textiles: Techstyle, cama de corte CNC con sistema de navaja para textiles, utilizada en la industria de la tapicería y moda.
+   * Láser CO2: Creator 1325 y 1309; ideales para corte y grabado de acrílico, MDF, tela, piel, entre otros, para la industra publicitaria, decoración y artículos promocionales (personalización).
+   * Láser de Fibra: Modelos FiberBlade X0 - Corte de lámina y placa planas, Profiler T6 100/220 - Corte de tubulares metálicos y FiberGraver - marcado/grabado rápido y preciso de metales
+   * Dobladora de Metal CNC: BendWorx; doblado industrial CNC de precisión para lámina y placa metálica.
+   * Soldadora de Fibra: WeldWorx; equipo láser de fibra para soldar metales, logra una alta calidad y velocidad de cordones de soldadura con un ciclo muy corto de capacitación, reduce dependencia de mano de obra especializada.
+   * Sistema de Aire Alta Presión: Fib-Air; potencia el rendimiento del corte láser y reduce costos del proceso de corte de metales (requiere equipo de corte láser de fibra)
+   * Software y Capacitación: Se incluye en todos los equipos CNC un paquete poderoso e intuitivo de software CAM y la capacitación correspondiente.
+   * Refacciones y Servicio Técnico: Garantía, soporte en México y centroamérica, refacciones originales y mantenimiento preventivo y correctivo, RÁPIDO CILCO DE ATENCIÓN Y SOLUCION DE INCIDENTES
+
+Customer Ascension Ranking:
+   1. Router CNC Shop Pro / Láser CO2 / Capacitación
+   2. Works / MultiHead / Plasma / FiberGraver / SAAP
+   3. ATC-Beast / FiberBlade / BendWorx / WeldWorx / Servicio Especializado
+________________
+
+
+# 5. TECH STACK
+Tools & platforms used for marketing, sales, and ops.
+Área
+	Tool / Service
+	Purpose / Notes
+	CRM
+	SalesUp
+	Gestión comercial y automatización
+	Email Marketing
+	Brevo.com
+	Campañas y flujos de email
+	Marketing Automation
+	DataCRM
+	Automatización de embudos
+	Analytics
+	Google Analytics
+	Tráfico y comportamiento web
+	Social Scheduling
+	Meta Business Suite
+	Publicación en redes sociales
+	Project Management
+	Trello.com
+	Seguimiento de proyectos internos
+	Technical Service
+	Zoho Desk
+	Gestión de soporte técnico
+	Administrative System
+	AlphaERP (Castelec)
+	ERP para facturación, inventario, compras, producción
+	E-commerce Platform
+	asiarobotica.com/tienda
+	Venta de refacciones CNC
+	Payment Processing
+	Clip, BBVA, transferencia, tarjetas
+	Opciones seguras y variadas
+	IT Development
+	Departamento interno
+	Desarrollo de plataformas internas
+	________________
+
+
+# 6. SALES & MARKETING
+Overview of your go‑to‑market approach, channels, messaging and campaigns.
+   * Go-to-Market Strategy: Ventas consultivas con enfoque en viabilizar nuevos negocios y/o aumento de competitividad del cliente, demostraciones técnicas, marketing digital y presencia nacional.
+   * Sales Process:
+   1. Lead Gen Sources: Sitio web, redes sociales, ferias industriales, referidos, clientes actuales
+   2. Qualification Criteria: Necesidades técnicas, capacidad de inversión, infraestructura disponible, mercado objetivo
+   * Marketing Channels & Tactics:
+   1. Digital Ads: Google Ads, Meta
+   2. Content Marketing: Blog técnico, YouTube, casos de éxito y testimoniales
+   3. Email / Nurture Flows: Campañas y boletines personalizados
+   4. Events & Partnerships: Ferias industriales, alianzas educativas
+   * Messaging Pillars:
+   1. Autonomía y Rentabilidad
+   2. Reputación e Identidad Empresarial: Asia Robótica se distingue por su **excelente soporte técnico y servicio post-venta**, garantizando confianza y satisfacción a largo plazo. Con **más de 20 años de experiencia**, una plantilla de **más de 150 empleados**, y una sólida trayectoria, la empresa es líder consolidada en su sector.
+   3. Expansión de Oportunidades
+   4. Calidad y Precisión Constante
+   5. Bienestar del Empresario
+________________
+
+
+# 7. SPOKESPERSON
+Information about the individual representing the business.
+   * Name: Ing. Esteban Ramírez Diaque
+   * Title: Director General / CEO
+   * Short Bio:
+Con más de 20 años en la industria CNC, el Ing. Esteban Ramírez lidera Asia Robótica con un enfoque humano, promoviendo tecnología avanzada con servicio empático y cercano. Su compromiso con la innovación y el bienestar de los equipos define el ADN de la empresa. Su liderazgo se caracteriza por enfocarse en la **conexión humana**, destacando la empatía, el respeto y un servicio excepcional. Impulsado por el compromiso de agregar valor a nuestros clientes, el Ing. Ramírez garantiza la entrega de **tecnología de vanguardia** y un soporte sobresaliente tanto a los equipos internos como a los clientes.
+Apasionado por la misión de **Asia Robotica** de empoderar a los clientes mediante soluciones confiables de automatización, el Ing. Ramírez se enorgullece de fomentar una **cultura de innovación, dedicación y soporte**. Reconocido por su actitud **alegre** y su **sentido del humor**, crea un ambiente accesible y amigable tanto para colegas como para clientes.
+   * Trust Builders:
+      * Years of Experience: 20+
+      * Speaking Engagements: Participación en ferias y eventos del sector CNC
+________________
+
+
+# 8. ORGANIZATIONAL STRUCTURE
+Key leadership roles and departments.
+      * CEO / Founder: Ing. Esteban Ramírez
+      * Director Comercial
+      * Gerente de NPI (Innovación e ingeniería): Ing. Pablo Ramírez
+      * Gerente de Operaciones: Luis Martínez
+      * Gerente de Finanzas, Contabilidad, RRHH y Procesos: LCI Ma. del Refugio Arroyo
+      * Gerente de Soporte Técnico Presencial
+      * Generalista de RH
+      * Jefe de Ventas de Refacciones y Servicios
+      * Jefe de Reparaciones
+      * Jefe Soporte Técnico Presencial CDMX
+      * Jefe de Almacén General
+      * Supervisor de Producción
+      * Jefe de Logística Nacional
+      * Jefe de Crédito y Cobranza
+      * Jefe de Desarrollo Tecnológico
+      * Jefe de NPI y Soporte Telefónico
+      * Jefe de Calidad
+      * Jefe de Procesos
+________________
+
+
+# 9. RECRUITING & TALENT ACQUISITION
+Overview of your employer brand, hiring philosophy, and candidate journey.
+      * Employer Value Proposition: Cultura de apoyo, desarrollo técnico y crecimiento profesional dentro de un entorno dinámico e innovador.
+      * Recruiting Strategy: Selección basada en competencias, dominio técnico, valores y adaptación cultural.
+      * Brand & Outreach Channels:
+      * Página de vacantes, redes sociales, referidos y alianzas educativas
+      * Diversity & Inclusion Initiatives: Sí – Igualdad de oportunidades y respeto mutuo
+      * Candidate Experience: Transparencia en procesos y retroalimentación a finalistas
+      * Onboarding & Development: Inducción estructurada, capacitación técnica, mentoría interna
+      * Retention & Culture Fit: Reconocimientos, competencias internas y sentido de pertenencia
+________________
+
+
+# 10. KEY PARTNERSHIPS
+Major partnerships, alliances, or vendor relationships.
+      * Castelec / Alpha ERP: ERP integral — desde 2009
+      * Zoho Desk: Plataforma de soporte técnico — desde 2019
+      * DataCRM: CRM y automatización comercial — desde 2026
+      * Instituciones Educativas Técnicas: Alianzas activas — en curso
+________________
+
+
+# 11. RECENT MILESTONES
+Critical achievements, product launches, funding events, etc.
+      * 2026 - Lanzamiento del ShopPro ATC y TechStyle
+      * 2025 - Lanzamiento Works ATC, ATC Beast, Profiler T6, Creator 1309 y Fib-Air
+      * 2024 - Lanzamiento de Shop Pro y Multihead
+      * 2023 — Lanzamiento de Lift Worx y SAAP
+      * 2023 — Apertura de tienda en línea de refacciones
+      * 2023 — Digitalización de procesos con plataformas internas
+      * 2022 — Incorporación de líneas Weld Worx y Bend Worx
+      * 2022 — Reforzamiento nacional del equipo de soporte técnico
+      * 2021 — Reestructura directiva y refuerzo cultural interno
+      * 2020–2021 — Adaptación operativa remota por pandemia
+________________
+
+
+# 12. COMPETITORS
+Primary competitors with a one-sentence summary each.
+      * Forza Láser (Guadalajara, México): Startup de 2023 con muy buenos videos en redes sociales y empuje comercial.
+      * Maquinaria Stanser (Monterrey, Nuevo León): Competidor directo con una oferta muy similar en productos y servicios (tal vez inspirada en Asia Robotica)
+      * SIDECO (CDMX): Competidor directo con una oferta muy similar en productos y servicios (tal vez inspirada en Asia Robotica)
+      * CNC Automatización: Proveedor de maquinaria CNC con soluciones importadas y soporte técnico variable.
+      * RouterCNC México: Distribuidor de routers CNC enfocados en talleres pequeños.
+      * Multicam México: Soluciones CNC premium con enfoque en grandes industrias.
+      * Sisma México: Tecnología láser de alta precisión con posicionamiento industrial.
+      * Makers CNC: Equipos de entrada para emprendedores con soporte remoto.
+      * Bodor: Marca internacional con presencia en México, especializada en láser de fibra para corte de metales.
+________________
