@@ -1,0 +1,69 @@
+﻿Brand Visual
+
+
+📐 SISTEMA VISUAL DE MARCA — Asia Robótica
+Fase 1: Análisis Visual Sistemático
+________________
+
+
+🔹 Reglas de Estructura de Layout
+LAYOUT_RULES = {
+  margins: [40px, 40px, 60px, 40px],  // superior, derecho, inferior, izquierdo
+  content_width_percent: 80,
+  column_system: "2-col flexible con énfasis en imágenes técnicas",
+  vertical_spacing_scale: [24px, 48px, 80px]  // pequeño, mediano, grande
+}
+
+
+🎨 Sistema de Color
+COLOR_SYSTEM = {
+  primary: {hex: "#E60404", usage_contexts: ["fondos", "headers", "botones CTA"]},
+  secondary: {hex: "#FFFFFF", usage_contexts: ["texto", "fondos de contraste"]},
+  accent: {hex: "#393D42", usage_contexts: ["íconos", "botones", "enlaces activos"]},
+  usage_rules: {
+    "CTA_buttons": "primary_color",
+    "body_text": "secondary_color (negro o blanco dependiendo del fondo)",
+    "backgrounds": "blanco o gris muy claro; nunca negro"
+  }
+}
+
+
+🔠 Jerarquía Tipográfica
+TYPE_SYSTEM = {
+  fonts: [“Ethnocentric”, "Montserrat"],
+  scale: {H1: 36px, H2: 28px, H3: 22px, body: 16px},
+  line_heights: {H1: 1.2, H2: 1.3, body: 1.5},
+  weights: {headers: 600-700, body: 400},
+  mobile_adjustments: {scale_factor: 0.85}
+}
+
+
+🧩 Catálogo de Elementos Visuales
+Botones
+* Rectangulares con esquinas redondeadas suaves (4–6px)
+* Colores sólidos (Rojo)
+* Tipografía sans-serif, peso medio
+Imágenes
+* Renders técnicos y fotos reales de maquinaria
+* Foco en equipos, no en personas
+* Proporciones horizontales (16:9 o 4:3)
+* Proporciones verticales (9:16 o 3:4)
+* Fondos neutros o industriales
+Íconos
+* Estilo outline o minimalista
+* Trazo medio, monocromático
+* Usualmente en rojo, gris Oxford o blanco
+Espaciado
+* Márgenes internos entre 16px y 40px
+* Separación clara entre bloques
+* Ritmo visual limpio, sin saturación
+________________
+
+
+🎯 Resumen de Estilo Visual
+* Diseño sobrio, técnico y funcional
+* Estructura limpia y ordenada
+* Colores alineados a confianza e innovación
+* Tipografías modernas y legibles
+* Enfoque visual en el equipo, no en lo emocional
+* Elementos de acción sobrios, no agresivos

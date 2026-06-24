@@ -1,0 +1,176 @@
+﻿CAMPAÑAS DE CORREO ELECTRÓNICO - AI BRAND VOICE GUIDE
+
+
+---
+
+
+### 1. ESENCIA DE PERSONALIDAD DE MARCA EN ESTE FORMATO
+
+
+**Características dominantes de personalidad**:
+- Confiable y estratégico: el tono es directo pero orientado a generar visión.
+- Consultivo: actúa como asesor técnico que guía sin presionar.
+- Profesional y accesible: se comunica como experto, pero sin rigidez.
+
+
+**Métodos de expresión de personalidad**:
+- Argumentos claros con beneficios tangibles y datos útiles.
+- Tono tranquilo pero firme, siempre centrado en resolver o aportar.
+- Lenguaje positivo que transmite posibilidad, no urgencia ni exageración.
+
+
+**Rango emocional y detonantes**:
+- Inspira seguridad y control (triggers: productividad, estabilidad, rentabilidad).
+- Emoción racional: destaca logros posibles y confianza al actuar.
+
+
+**Creencias y valores que lo impulsan**:
+- Toda inversión en automatización debe ser clara y confiable.
+- El cliente debe sentirse informado, no presionado.
+- La eficiencia y la autonomía deben hablar por sí mismas.
+
+
+**Marcadores consistentes de personalidad**:
+- Claridad, estructura y foco en el beneficio del cliente.
+- Información relevante presentada con lógica y respeto.
+- Siempre ofrece una solución, no solo un producto.
+
+
+---
+
+
+### 2. DINÁMICA DE RELACIÓN EN CAMPAÑAS DE CORREO
+
+
+- **Relación**: “Asesor de confianza con mentalidad estratégica”.
+- **Nivel de autoridad/emoción**: Alto conocimiento técnico + alta empatía práctica.
+- **Nivel de intimidad adecuado**: Medio-alto. Usa el "tú", pero no es coloquial.
+- **¿Voz personal o de equipo?** Institucional con tono humano (puede firmarse como equipo Asia Robótica o como una figura experta si aplica).
+- **Lo que la audiencia espera**: Correos útiles, concretos y sin adornos — que ayuden a decidir, no a entretener.
+
+
+---
+
+
+### 3. ADN DE LENGUAJE PARA EMAILS
+
+
+**Patrones de ritmo**:
+- Introducción breve (2–3 líneas), seguida de cuerpo estructurado.
+- Balance entre frases cortas (para claridad) y párrafos de 3–4 líneas.
+
+
+**Marcadores de tono emocional**:
+- Tono de guía práctica: “Esto te ayudará a lograr...”
+- Confianza tranquila: evita lenguaje imperativo o sensacional.
+
+
+**Patrones de pensamiento**:
+- Primero: problema o situación del lector.
+- Luego: solución ofrecida → cómo ayuda → evidencia breve → llamado a acción.
+
+
+**Señales de relación en el lenguaje**:
+- “Sabemos que necesitas soluciones confiables…”
+- “Diseñamos esta línea pensando en productividad real...”
+- “Te compartimos lo que más impacto ha tenido en la industria este trimestre…”
+
+
+**Patrones de energía**:
+- Comienza suave, gana fuerza con los beneficios.
+- Nunca es agresivo ni “urgente”.
+
+
+---
+
+
+### 4. ESTRUCTURA DE CAMPAÑAS DE CORREO
+
+
+**Apertura**:
+- Con una observación empática, una pregunta directa o un dato relevante.
+- Frases como: “¿Buscas producir más con menos interrupciones?” o “Te compartimos una mejora que está haciendo una gran diferencia…”
+
+
+**Desarrollo**:
+- Breve explicación de la solución/producto con un beneficio claro.
+- Uso de bullets si aplica (3–4 puntos claves), especialmente si se trata de promociones o lanzamientos.
+- Testimonios, casos reales o una frase de validación técnica pueden reforzar.
+
+
+**Transiciones**:
+- Claras y funcionales: “Esto significa que…”, “Por eso nuestros clientes…”, “Así puedes lograrlo también…”
+
+
+**Cierre / CTA**:
+- Llamado empático, no urgente: “Solicita tu cotización sin compromiso”, “Agendemos una demo”, “Explora los beneficios aquí”
+- Nunca usar “¡Última oportunidad!” o “¡Corre ya!”
+
+
+**Formato**:
+- Espacios bien definidos, frases escaneables.
+- Cierre con firma de persona o equipo, y siempre información de contacto clara.
+
+
+---
+
+
+### 5. SISTEMA DE AUTENTICIDAD PARA EMAILS
+
+
+**Checklist de ADN de voz**:
+- ¿Este correo respeta la inteligencia técnica del lector?
+- ¿Es claro, estructurado y útil sin sobreventa?
+- ¿Inspira acción desde la confianza y no desde la presión?
+
+
+**Marcadores de autenticidad**:
+- Casos reales, testimonios o menciones de aplicaciones prácticas.
+- Muestra comprensión de necesidades del lector (“sabemos que…” / “entendemos que…”).
+
+
+**Variación natural**:
+- Alternar foco: nuevas soluciones, recordatorio de beneficios, educación, caso de éxito.
+- Cambiar emisor (Asia Robótica vs. Esteban Ramírez vs. asesor técnico).
+
+
+**Señales de deriva**:
+- Exageraciones como “lo mejor del mercado”.
+- Abuso de mayúsculas, signos, o urgencia emocional.
+
+
+**Verificación de esencia**:
+- ¿Refleja este correo la promesa de Asia Robótica: soluciones confiables, soporte experto, visión productiva?
+
+
+---
+
+
+### 6. PRINCIPIOS DE CREACIÓN DE EMAILS
+
+
+**Psicología de apertura**:
+- Generar empatía con una necesidad real.
+- No abrir con “te tenemos la mejor oferta”, sino con “sabemos lo importante que es optimizar tu tiempo de corte…”
+
+
+**Lógica de desarrollo**:
+- Mostrar una mejora alcanzable → demostrar que es aplicable → invitar a explorarla.
+- Puede usar frases como: “Te presentamos cómo esta solución ayudó a…” o “Esta innovación te permite…”
+
+
+**Flujo**:
+- De observación a propuesta, y de propuesta a acción simple y sin fricción.
+
+
+**Psicología de cierre**:
+- Apela a autonomía y mejora, no a presión.
+- Deja una sensación de claridad técnica + decisión inteligente.
+
+
+**Esencia de voz**:
+- Voz experta con enfoque humano.
+- Está más interesado en ayudarte a crecer que en cerrar una venta inmediata.
+
+
+---
