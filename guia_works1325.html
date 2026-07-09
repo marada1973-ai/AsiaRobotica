@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Aprendizaje — Router CNC Works1325 | Asia Robótica</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60404;
+    --red-dark: #b80303;
+    --red-light: #ff2020;
+    --gray-dark: #393D42;
+    --gray-mid: #6b7280;
+    --gray-light: #f3f4f6;
+    --white: #ffffff;
+    --border: #e5e7eb;
+    --success: #16a34a;
+    --warning: #d97706;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: var(--gray-light);
+    color: var(--gray-dark);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    width: var(--sidebar-w);
+    background: var(--gray-dark);
+    color: var(--white);
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: transform .3s;
+  }
+  .sidebar-logo {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .sidebar-logo .brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sidebar-logo h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .sidebar-logo .subtitle {
+    font-size: 10px;
+    color: rgba(255,255,255,.5);
+    margin-top: 6px;
+  }
+  .progress-bar-wrap {
+    padding: 14px 20px 10px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .progress-label {
+    font-size: 10px;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-bar-bg {
+    background: rgba(255,255,255,.15);
+    border-radius: 4px;
+    height: 4px;
+  }
+  .progress-bar-fill {
+    background: var(--red);
+    height: 4px;
+    border-radius: 4px;
+    transition: width .5s;
+    width: 0%;
+  }
+  nav { flex: 1; padding: 12px 0; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,.6);
+    transition: all .2s;
+    border-left: 3px solid transparent;
+  }
+  .nav-item:hover { background: rgba(255,255,255,.05); color: var(--white); }
+  .nav-item.active {
+    background: rgba(230,4,4,.15);
+    color: var(--white);
+    border-left-color: var(--red);
+  }
+  .nav-item.done { color: rgba(255,255,255,.45); }
+  .nav-item.done .nav-check { color: #4ade80; }
+  .nav-icon { font-size: 16px; flex-shrink: 0; width: 20px; text-align: center; }
+  .nav-check { font-size: 11px; margin-left: auto; }
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: 10px;
+    color: rgba(255,255,255,.3);
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 0;
+    min-height: 100vh;
+  }
+  .module { display: none; animation: fadeIn .3s; }
+  .module.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+
+  .module-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px 24px;
+  }
+  .module-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .module-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--gray-dark);
+    margin-bottom: 8px;
+  }
+  .module-header p {
+    font-size: 14px;
+    color: var(--gray-mid);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .module-body { padding: 32px 40px; max-width: 860px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p, .card li {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+  .card ul { padding-left: 18px; }
+  .card ul li { margin-bottom: 6px; }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #fff1f1 0%, #fff7f7 100%);
+    border: 1px solid #fecaca;
+    border-left: 4px solid var(--red);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+  .highlight-box strong { color: var(--red); }
+
+  .info-box {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 4px solid #0284c7;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #0c4a6e;
+    line-height: 1.6;
+  }
+
+  /* ── COMPARE TABLE ── */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+  .compare-table th {
+    background: var(--gray-dark);
+    color: var(--white);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .compare-table th:first-child { border-radius: 8px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 8px 0 0; }
+  .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .compare-table tr:nth-child(even) td { background: #f9fafb; }
+  .compare-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  .compare-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+  .badge-yes { color: var(--success); font-weight: 700; }
+  .badge-no { color: #9ca3af; }
+  .badge-opt { color: var(--warning); font-weight: 600; }
+
+  /* ── SPECS GRID ── */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .spec-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .spec-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 6px; }
+  .spec-value { font-size: 15px; font-weight: 700; color: var(--gray-dark); }
+  .spec-sub { font-size: 11px; color: var(--gray-mid); margin-top: 2px; }
+
+  /* ── FLASHCARDS ── */
+  .flashcard-wrap { perspective: 1000px; margin-bottom: 20px; }
+  .flashcard {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    cursor: pointer;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .flashcard-front {
+    background: var(--gray-dark);
+    color: var(--white);
+  }
+  .flashcard-back {
+    background: var(--red);
+    color: var(--white);
+    transform: rotateY(180deg);
+  }
+  .flashcard-front .fc-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: .5; margin-bottom: 12px; }
+  .flashcard-front .fc-term { font-size: 18px; font-weight: 700; }
+  .flashcard-back .fc-answer { font-size: 14px; font-weight: 500; line-height: 1.6; }
+  .flashcard-hint { font-size: 11px; text-align: center; color: var(--gray-mid); margin-bottom: 12px; }
+  .fc-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; }
+  .fc-nav button {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-dark);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .fc-nav button:hover { background: var(--gray-dark); color: var(--white); border-color: var(--gray-dark); }
+  .fc-counter { font-size: 12px; font-weight: 600; color: var(--gray-mid); min-width: 60px; text-align: center; }
+
+  /* ── OBJECTION SIMULATOR ── */
+  .scenario-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .scenario-btn {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    transition: all .2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .scenario-btn:hover { border-color: var(--red); background: #fff8f8; }
+  .scenario-btn.selected { border-color: var(--red); background: #fff1f1; }
+  .scenario-icon { font-size: 18px; flex-shrink: 0; }
+  .scenario-text { font-size: 13px; line-height: 1.5; }
+  .scenario-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 3px; }
+  .response-panel {
+    background: var(--white);
+    border: 2px solid var(--red);
+    border-radius: 12px;
+    padding: 24px;
+    display: none;
+    animation: fadeIn .3s;
+  }
+  .response-panel.visible { display: block; }
+  .response-panel h4 { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+  .response-panel p { font-size: 13px; line-height: 1.7; color: var(--gray-dark); }
+  .response-panel .tip {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #166534;
+  }
+  .tip-label { font-weight: 700; margin-bottom: 4px; }
+
+  /* ── QUIZ ── */
+  .quiz-question { margin-bottom: 28px; }
+  .quiz-q-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .quiz-q-num { color: var(--red); margin-right: 6px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    text-align: left;
+    transition: all .2s;
+    color: var(--gray-dark);
+  }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--gray-dark); background: #f9fafb; }
+  .quiz-opt.correct { background: #f0fdf4; border-color: var(--success); color: #166534; font-weight: 600; }
+  .quiz-opt.wrong { background: #fff1f1; border-color: var(--red); color: #991b1b; }
+  .quiz-opt.reveal-correct { background: #f0fdf4; border-color: var(--success); color: #166534; }
+  .quiz-feedback { font-size: 12px; margin-top: 8px; padding: 8px 12px; border-radius: 6px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: #f0fdf4; color: #166534; }
+  .quiz-feedback.fail { background: #fff1f1; color: #991b1b; }
+  .quiz-result {
+    background: var(--white);
+    border: 2px solid var(--red);
+    border-radius: 14px;
+    padding: 32px;
+    text-align: center;
+    display: none;
+    animation: fadeIn .4s;
+  }
+  .quiz-result.show { display: block; }
+  .quiz-score { font-size: 52px; font-weight: 800; color: var(--red); }
+  .quiz-score-label { font-size: 14px; color: var(--gray-mid); margin-bottom: 16px; }
+  .quiz-msg { font-size: 15px; font-weight: 600; margin-bottom: 20px; }
+  .quiz-submit {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    cursor: pointer;
+    transition: background .2s;
+    display: block;
+    margin: 24px auto 0;
+  }
+  .quiz-submit:hover { background: var(--red-dark); }
+  .quiz-restart {
+    background: var(--gray-dark);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background .2s;
+  }
+  .quiz-restart:hover { background: #2d3137; }
+
+  /* ── NAV BUTTONS ── */
+  .module-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-next, .btn-prev {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    cursor: pointer;
+    transition: all .2s;
+    border: none;
+  }
+  .btn-next { background: var(--red); color: var(--white); }
+  .btn-next:hover { background: var(--red-dark); }
+  .btn-prev { background: var(--white); color: var(--gray-dark); border: 1px solid var(--border); }
+  .btn-prev:hover { background: var(--gray-light); }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── PILL TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .tag {
+    background: #f3f4f6;
+    color: var(--gray-dark);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag.red { background: #fff1f1; color: var(--red); }
+
+  /* ── WELCOME ── */
+  .welcome-hero {
+    background: var(--gray-dark);
+    color: var(--white);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .welcome-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(230,4,4,.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .welcome-hero .ar-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+  .welcome-hero h1 { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+  .welcome-hero p { font-size: 14px; color: rgba(255,255,255,.7); max-width: 520px; line-height: 1.7; margin-bottom: 28px; }
+  .welcome-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .welcome-stat .num { font-size: 28px; font-weight: 800; color: var(--red); }
+  .welcome-stat .lbl { font-size: 11px; color: rgba(255,255,255,.5); }
+
+  /* ── PROFILE CARDS ── */
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 16px 0; }
+  .profile-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+  }
+  .profile-icon { font-size: 28px; margin-bottom: 8px; }
+  .profile-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .profile-desc { font-size: 11px; color: var(--gray-mid); line-height: 1.5; }
+
+  /* DIFFERENTIATORS */
+  .diff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin: 16px 0; }
+  .diff-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .diff-card .diff-icon { font-size: 22px; margin-bottom: 8px; }
+  .diff-card .diff-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .diff-card .diff-text { font-size: 12px; color: #4b5563; line-height: 1.6; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+  .section-title:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Asia Robótica</div>
+    <h2>Guía de Aprendizaje<br>Router CNC Works1325</h2>
+    <div class="subtitle">Coordinador Comercial · Florencia Machado</div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-label">
+      <span>Progreso</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+  <nav id="sidenav">
+    <div class="nav-item active" data-module="0">
+      <span class="nav-icon">🏠</span> Bienvenida
+      <span class="nav-check" id="check-0"></span>
+    </div>
+    <div class="nav-item" data-module="1">
+      <span class="nav-icon">🔧</span> El Equipo
+      <span class="nav-check" id="check-1"></span>
+    </div>
+    <div class="nav-item" data-module="2">
+      <span class="nav-icon">📐</span> Especificaciones
+      <span class="nav-check" id="check-2"></span>
+    </div>
+    <div class="nav-item" data-module="3">
+      <span class="nav-icon">💻</span> Software Incluido
+      <span class="nav-check" id="check-3"></span>
+    </div>
+    <div class="nav-item" data-module="4">
+      <span class="nav-icon">🎯</span> Valor Comercial
+      <span class="nav-check" id="check-4"></span>
+    </div>
+    <div class="nav-item" data-module="5">
+      <span class="nav-icon">🎮</span> Simulador de Objeciones
+      <span class="nav-check" id="check-5"></span>
+    </div>
+    <div class="nav-item" data-module="6">
+      <span class="nav-icon">📝</span> Evaluación Final
+      <span class="nav-check" id="check-6"></span>
+    </div>
+  </nav>
+  <div class="sidebar-footer">Asia Robótica · AR Tecnología S.A. de C.V. · 2026</div>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- ══════════════════ MÓDULO 0: BIENVENIDA ══════════════════ -->
+  <section class="module active" id="module-0">
+    <div class="welcome-hero">
+      <div class="ar-tag">Módulo 1 de 7</div>
+      <h1>Bienvenida, Florencia 👋</h1>
+      <p>Esta guía te ayudará a conocer a fondo el Router CNC Works1325, uno de los equipos clave del portafolio de Asia Robótica. Al terminarla podrás hablar con confianza sobre sus características, responder objeciones y recomendar el equipo correcto según el cliente.</p>
+      <div class="welcome-stats">
+        <div class="welcome-stat"><div class="num">7</div><div class="lbl">Módulos</div></div>
+        <div class="welcome-stat"><div class="num">~30</div><div class="lbl">Minutos</div></div>
+        <div class="welcome-stat"><div class="num">10</div><div class="lbl">Preguntas finales</div></div>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="highlight-box">
+        <strong>¿Para qué sirve esta guía?</strong> Cada equipo del portafolio AR tiene su propia guía. Cuando las completes todas, tendrás el conocimiento técnico y comercial necesario para apoyar al equipo de ventas y participar en presentaciones con clientes.
+      </div>
+
+      <div class="section-title">El portafolio de Asia Robótica</div>
+      <div class="card">
+        <h3>🗂️ ¿Dónde encaja el Router CNC?</h3>
+        <p>Asia Robótica comercializa 6 familias de equipos de automatización industrial para PyME mexicana:</p>
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag red">→ Router CNC ← (esta guía)</span>
+          <span class="tag">Láser CO2</span>
+          <span class="tag">Láser Fibra</span>
+          <span class="tag">Plasma CNC</span>
+          <span class="tag">Dobladora CNC</span>
+          <span class="tag">Soldadora Láser</span>
+        </div>
+        <p style="margin-top:12px;">El Router CNC es el equipo más orientado a <strong>madera, MDF, acrílico y materiales no metálicos</strong>. Es la puerta de entrada para clientes de los sectores de <strong>publicidad, ebanistería y mueblería</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h3>📌 Lo que aprenderás en esta guía</h3>
+        <ul>
+          <li>Las diferencias entre los modelos <strong>Works y WorksB</strong></li>
+          <li>Las especificaciones técnicas clave que los clientes preguntan</li>
+          <li>Por qué el software incluido (VCarve Pro) es un diferenciador real</li>
+          <li>Quién es el cliente ideal y qué argumentos de venta usar</li>
+          <li>Cómo responder las objeciones más comunes</li>
+        </ul>
+      </div>
+
+      <div class="module-nav">
+        <div></div>
+        <button class="btn-next" onclick="goTo(1)">Siguiente: El Equipo →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ MÓDULO 1: EL EQUIPO ══════════════════ -->
+  <section class="module" id="module-1">
+    <div class="module-header">
+      <div class="module-tag">Módulo 2 de 7</div>
+      <h1>El Equipo — Works1325</h1>
+      <p>"La máquina pesada de su categoría." Un Router CNC de trabajo pesado para pequeños y medianos productores que quieren competir con mayor eficiencia.</p>
+    </div>
+    <div class="module-body">
+
+      <div class="highlight-box">
+        <strong>Nombre completo del equipo:</strong> Works1325 — el número hace referencia al área de trabajo: 13 decímetros × 25 decímetros (aprox. 4' × 8', o 122 × 244 cm), que es el tamaño estándar de una hoja de material.
+      </div>
+
+      <div class="section-title">Los dos modelos</div>
+      <div class="card">
+        <h3>⚙️ Works vs. WorksB — ¿cuál es la diferencia?</h3>
+        <table class="compare-table">
+          <thead>
+            <tr><th>Característica</th><th>Works (1 cabezal)</th><th>WorksB (doble motor)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Motor principal</td><td>HSD Italy · 8HP · 24,000 rpm</td><td>HSD Italy · 8HP · 24,000 rpm</td></tr>
+            <tr><td>Motor secundario</td><td class="badge-no">—</td><td>2HP · 18,000 rpm (para perforado y tallado)</td></tr>
+            <tr><td>Refrigeración</td><td>Aire</td><td>Aire</td></tr>
+            <tr><td>Cambio de herramienta</td><td>Manual</td><td>Manual</td></tr>
+            <tr><td>Ideal para</td><td>Corte, fresado y grabado 2D/3D</td><td>Producción mixta: corte + perforado frecuente</td></tr>
+            <tr><td>Precio</td><td>Menor inversión</td><td>Mayor inversión (producción más versátil)</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box" style="margin-top:14px;margin-bottom:0;">
+          <strong>💡 Regla práctica de venta:</strong> Si el cliente hace mueble con muchos barrenos o produce tableros perforados con frecuencia, el WorksB justifica su sobrecosto. Si es principalmente corte y grabado, el Works estándar es la opción correcta.
+        </div>
+      </div>
+
+      <div class="section-title">Sistema de sujeción de material</div>
+      <div class="two-col">
+        <div class="card">
+          <h3>🌀 Mesa de vacío</h3>
+          <p>La mesa tiene salidas de vacío y canales que transmiten succión a la superficie. Retiene materiales planos y no porosos sin necesidad de tornillos ni prensas. Electroválvulas controlan las zonas de succión activas para optimizar el vacío según el tamaño del material.</p>
+        </div>
+        <div class="card">
+          <h3>🔩 Prensas (clamps)</h3>
+          <p>Insertos de acero con pared de 5mm cortados a láser. Se incluyen <strong>8 clamps</strong>. Son indispensables para tablas de madera combadas o materiales porosos que el vacío no puede sujetar correctamente.</p>
+        </div>
+      </div>
+
+      <div class="section-title">Opcionales del equipo</div>
+      <div class="card">
+        <h3>🔄 Opciones disponibles (add-ons)</h3>
+        <table class="compare-table">
+          <thead>
+            <tr><th>Opcional</th><th>¿Qué hace?</th><th>¿Cuándo recomendarlo?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Rolillos de presión</strong></td>
+              <td>Sujeción mecánica adicional para material muy combado</td>
+              <td>Clientes con madera húmeda o de baja calidad superficial</td>
+            </tr>
+            <tr>
+              <td><strong>Versión R (Rotary)</strong></td>
+              <td>Torno CNC integrado para tallado de cilindros hasta 300mm diám. y 2.5m largo</td>
+              <td>Torneros, fabricantes de columnas o barandales decorativos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Accesorios incluidos en el precio</div>
+      <div class="card">
+        <h3>📦 ¿Qué viene incluido?</h3>
+        <ul>
+          <li>Colector de polvo de doble bolsa · 3HP · capacidad 350 litros</li>
+          <li>Bomba de vacío <strong>Becker (Alemania)</strong> · 7HP · paletas de grafito rotativas</li>
+          <li>Set de 5 herramientas de corte: 2 de ½", 2 de 3/8" y 1 en V a 45° para grabado</li>
+          <li>Collets para herramientas de ½" y ¼"</li>
+          <li>8 clamps para sujeción manual de material</li>
+          <li>Controlador CNC manual (no requiere computadora para operar)</li>
+          <li>Instalación y capacitación en sitio (ver módulo de valor comercial)</li>
+        </ul>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn-prev" onclick="goTo(0)">← Anterior</button>
+        <button class="btn-next" onclick="goTo(2)">Siguiente: Especificaciones →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ MÓDULO 2: SPECS ══════════════════ -->
+  <section class="module" id="module-2">
+    <div class="module-header">
+      <div class="module-tag">Módulo 3 de 7</div>
+      <h1>Especificaciones Técnicas</h1>
+      <p>Los datos clave que los clientes (y su equipo de compras) van a preguntar. Apréndalos bien — transmiten credibilidad técnica desde la primera visita.</p>
+    </div>
+    <div class="module-body">
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">Área de trabajo</div>
+          <div class="spec-value">4' × 8'</div>
+          <div class="spec-sub">122 × 244 cm · tamaño hoja estándar</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Motor principal</div>
+          <div class="spec-value">8 HP</div>
+          <div class="spec-sub">HSD Italy · 24,000 RPM · aire refrigerado</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Motor WorksB (2°)</div>
+          <div class="spec-value">2 HP</div>
+          <div class="spec-sub">18,000 RPM · perforado y tallado</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Velocidad máx.</div>
+          <div class="spec-value">30 m/min</div>
+          <div class="spec-sub">1,180 IPM · desplazamiento en vacío</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Precisión</div>
+          <div class="spec-value">±0.15 mm</div>
+          <div class="spec-sub">Posicionamiento repetible</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Sistema de transmisión</div>
+          <div class="spec-value">Rack & Pinion</div>
+          <div class="spec-sub">Ejes X e Y · Ballscrew en eje Z</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Bomba de vacío</div>
+          <div class="spec-value">7 HP</div>
+          <div class="spec-sub">Becker (Alemania) · paletas de grafito</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Colector de polvo</div>
+          <div class="spec-value">3 HP</div>
+          <div class="spec-sub">Doble bolsa · 350 litros de capacidad</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Peso total</div>
+          <div class="spec-value">1.4 ton</div>
+          <div class="spec-sub">Toneladas métricas</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Requerimiento eléctrico</div>
+          <div class="spec-value">220V / 3F</div>
+          <div class="spec-sub">Trifásico · mín. 40 Amperes · 60 Amp carga total</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Garantía estándar</div>
+          <div class="spec-value">2 años</div>
+          <div class="spec-sub">Extensible hasta 5 años totales</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Cambio de herramienta</div>
+          <div class="spec-value">Manual</div>
+          <div class="spec-sub">Collets ½" y ¼" incluidos</div>
+        </div>
+      </div>
+
+      <div class="section-title">Requisitos de instalación</div>
+      <div class="card">
+        <h3>🏭 Lo que el cliente debe preparar antes de la entrega</h3>
+        <ul>
+          <li><strong>Conexión eléctrica trifásica 220V</strong> a máximo 5 metros del equipo (≥60 Amperes)</li>
+          <li><strong>Computadora Windows</strong> (7/8/10) · mínimo Core Duo 1.5GHz · 2GB RAM · pantalla alta resolución</li>
+          <li>Se entrega un manual de preparación del área al momento del cierre de pedido</li>
+        </ul>
+        <div class="info-box" style="margin-top:14px;margin-bottom:0;">
+          <strong>🔑 Punto clave para ventas:</strong> El cliente debe tener la instalación eléctrica lista <em>antes</em> de la visita de instalación. Si no la tiene, se generan retrasos que afectan su percepción del servicio. Menciónalo desde el cierre.
+        </div>
+      </div>
+
+      <div class="section-title">Controlador CNC</div>
+      <div class="card">
+        <h3>🕹️ Operación independiente de computadora</h3>
+        <p>El equipo incluye un controlador manual táctil (tipo mando) que permite operar el Works sin estar conectado a una PC. Los archivos de corte se transfieren por <strong>memoria USB</strong> o pueden almacenarse en la memoria interna del controlador para trabajos recurrentes. Esto reduce fallas por virus o problemas del sistema operativo de la computadora del taller.</p>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn-prev" onclick="goTo(1)">← Anterior</button>
+        <button class="btn-next" onclick="goTo(3)">Siguiente: Software →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ MÓDULO 3: SOFTWARE ══════════════════ -->
+  <section class="module" id="module-3">
+    <div class="module-header">
+      <div class="module-tag">Módulo 4 de 7</div>
+      <h1>Software Incluido — VCarve Pro</h1>
+      <p>El software no es un accesorio — es un diferenciador de venta. Muchos competidores incluyen software limitado o pirata. AR entrega licencia original de VCarve Pro con un año de actualizaciones.</p>
+    </div>
+    <div class="module-body">
+
+      <div class="highlight-box">
+        <strong>¿Por qué el software importa en la decisión de compra?</strong> Software limitado o pirata = limitaciones en lo que se puede fabricar + baja productividad en programación. Un cliente que no puede aprovechar su equipo al 100% se arrepiente de la compra — y no recompra.
+      </div>
+
+      <div class="card">
+        <h3>📦 ¿Qué incluye la licencia VCarve Pro?</h3>
+        <ul>
+          <li>Licencia <strong>original</strong> de Vectric (Inglaterra) — no pirata, no demo</li>
+          <li><strong>1 año de actualizaciones gratuitas</strong></li>
+          <li>Instalación incluida por técnico calificado de AR</li>
+          <li>Capacidades 2D y 3D de diseño y mecanizado</li>
+        </ul>
+      </div>
+
+      <div class="section-title">Aprende los puntos clave con tarjetas</div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;">Haz clic en cada tarjeta para ver la respuesta. Usa las flechas para navegar entre ellas.</p>
+
+      <div class="flashcard-hint">👆 Haz clic en la tarjeta para voltearla</div>
+
+      <div id="fc-container"></div>
+      <div class="fc-nav">
+        <button onclick="prevCard()">← Anterior</button>
+        <span class="fc-counter" id="fc-counter">1 / 8</span>
+        <button onclick="nextCard()">Siguiente →</button>
+      </div>
+
+      <div class="section-title" style="margin-top:32px;">Formatos de archivo compatibles</div>
+      <div class="two-col">
+        <div class="card">
+          <h3>🖼️ Importación de diseño vectorial / CAD</h3>
+          <div class="tags">
+            <span class="tag">DWG</span><span class="tag">DXF</span><span class="tag">EPS</span>
+            <span class="tag">AI</span><span class="tag">PDF</span><span class="tag">SKP</span><span class="tag">SVG</span>
+          </div>
+          <p style="margin-top:8px;">Compatible con los diseños que llegan desde AutoCAD, Adobe Illustrator, CorelDraw, SketchUp y muchos más.</p>
+        </div>
+        <div class="card">
+          <h3>🧊 Importación de modelos 3D</h3>
+          <div class="tags">
+            <span class="tag">STL</span><span class="tag">OBJ</span><span class="tag">3DM</span><span class="tag">SKP</span>
+          </div>
+          <p style="margin-top:8px;">Permite trabajar con modelos tridimensionales para tallado 3D. Los clientes que hacen artesanías o piezas decorativas de relieve usan estos formatos.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🖼️ Importación de imágenes bitmap</h3>
+        <div class="tags">
+          <span class="tag">BMP</span><span class="tag">JPG</span><span class="tag">TIF</span><span class="tag">GIF</span>
+        </div>
+        <p style="margin-top:8px;">El software vectoriza automáticamente imágenes con un algoritmo propio — el cliente puede partir de una foto o logotipo escaneado y convertirlo directamente en trayectorias de corte CNC.</p>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn-prev" onclick="goTo(2)">← Anterior</button>
+        <button class="btn-next" onclick="goTo(4)">Siguiente: Valor Comercial →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ MÓDULO 4: VALOR COMERCIAL ══════════════════ -->
+  <section class="module" id="module-4">
+    <div class="module-header">
+      <div class="module-tag">Módulo 5 de 7</div>
+      <h1>Valor Comercial</h1>
+      <p>Conocer el equipo es necesario. Saber vendérselo al cliente correcto es lo que genera resultados. Este módulo te da el contexto comercial que complementa las especificaciones técnicas.</p>
+    </div>
+    <div class="module-body">
+
+      <div class="section-title">¿Quién es el cliente ideal del Works1325?</div>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-icon">🪵</div>
+          <div class="profile-name">Ebanista / Mueblero</div>
+          <div class="profile-desc">Produce muebles, closets o tableros. Necesita cortar MDF y madera con precisión y velocidad.</div>
+        </div>
+        <div class="profile-card">
+          <div class="profile-icon">🖼️</div>
+          <div class="profile-name">Publicista / Rotulista</div>
+          <div class="profile-desc">Hace letras, letreros, displays y elementos decorativos. Trabaja con acrílico, espuma y madera.</div>
+        </div>
+        <div class="profile-card">
+          <div class="profile-icon">🏺</div>
+          <div class="profile-name">Artesano Industrial</div>
+          <div class="profile-desc">Produce artesanías talladas en relieve (3D), souvenirs o decoración de madera a escala.</div>
+        </div>
+        <div class="profile-card">
+          <div class="profile-icon">🏗️</div>
+          <div class="profile-name">Fabricante de Cocinas</div>
+          <div class="profile-desc">Corta gabinetes y frentes de cocina en serie, con patrones repetitivos y alta precisión.</div>
+        </div>
+      </div>
+      <div class="info-box">
+        <strong>Lo que todos tienen en común:</strong> Son PyMEs que hoy cortan a mano o con sierras convencionales y quieren dar el salto a la automatización para competir con mayor volumen, precisión y menor tiempo de producción.
+      </div>
+
+      <div class="section-title">Diferenciadores de Asia Robótica</div>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-icon">🔑</div>
+          <div class="diff-title">Solución llave en mano</div>
+          <div class="diff-text">Incluimos logística, instalación, capacitación y soporte. El cliente no tiene que coordinar a tres proveedores diferentes.</div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🛡️</div>
+          <div class="diff-title">Garantía directa hasta 5 años</div>
+          <div class="diff-text">2 años estándar, extensible hasta 5 totales. AR respalda directamente — sin intermediarios que diluyan la responsabilidad.</div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">👨‍🔧</div>
+          <div class="diff-title">25 ingenieros especializados</div>
+          <div class="diff-text">Presencia nacional con stock de refacciones para envío inmediato. El cliente no para producción semanas esperando una pieza.</div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">📞</div>
+          <div class="diff-title">Soporte telefónico de por vida</div>
+          <div class="diff-text">Gratuito, ilimitado y con conexión remota al software de CAM. Ningún competidor de precio similar ofrece esto.</div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">📈</div>
+          <div class="diff-title">Tasa de recompra 50-60%</div>
+          <div class="diff-text">Más de la mitad de clientes que compran un equipo vuelven a comprar. Es la prueba más directa de que el producto y el servicio cumplen.</div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🎓</div>
+          <div class="diff-title">Capacitación incluida (2 días)</div>
+          <div class="diff-text">Hasta 4 personas en sitio. No es una presentación — es capacitación práctica con el equipo ya instalado en el taller del cliente.</div>
+        </div>
+      </div>
+
+      <div class="section-title">Argumentos de venta por situación</div>
+      <div class="card">
+        <h3>💬 Cuando el cliente dice: "¿Cuánto tiempo tardó en recuperarse?"</h3>
+        <p>Hazte una pregunta contigo: ¿cuántos piezas producen actualmente por día y cuántos podrían producir con el equipo? Ayuda al cliente a hacer su propio cálculo de ROI — que él mismo llegue al número es mucho más poderoso que dárselo tú.</p>
+      </div>
+      <div class="card">
+        <h3>💬 Cuando el cliente compara con competencia de menor precio</h3>
+        <p>No compitas en precio — compite en costo total. Un equipo más barato con soporte malo cuesta más en producción perdida que la diferencia de precio inicial. Usa la garantía de 5 años y los 25 ingenieros como palanca.</p>
+      </div>
+      <div class="card">
+        <h3>💬 Cuando el cliente es nuevo en CNC</h3>
+        <p>La curva de aprendizaje es uno de sus miedos. Recuérdale que incluimos capacitación de 2 días + soporte telefónico de por vida + conexión remota al software. No lo dejamos solo en ningún momento.</p>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn-prev" onclick="goTo(3)">← Anterior</button>
+        <button class="btn-next" onclick="goTo(5)">Siguiente: Simulador →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ MÓDULO 5: SIMULADOR ══════════════════ -->
+  <section class="module" id="module-5">
+    <div class="module-header">
+      <div class="module-tag">Módulo 6 de 7</div>
+      <h1>Simulador de Objeciones</h1>
+      <p>Elige una objeción real de cliente y practica cómo responderla. Primero piensa en tu propia respuesta, luego compara con la respuesta sugerida de AR.</p>
+    </div>
+    <div class="module-body">
+
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;">Selecciona la objeción que quieres practicar:</p>
+
+      <ul class="scenario-list" id="scenario-list">
+        <li>
+          <button class="scenario-btn" onclick="showResponse(0)">
+            <span class="scenario-icon">💰</span>
+            <span class="scenario-text">
+              <span class="scenario-label">Objeción de precio</span>
+              "Es muy caro, vi un equipo en línea por la mitad del precio."
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="scenario-btn" onclick="showResponse(1)">
+            <span class="scenario-icon">🔧</span>
+            <span class="scenario-text">
+              <span class="scenario-label">Objeción de soporte</span>
+              "¿Y si se me descompone? ¿Cuánto tardo en que venga alguien?"
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="scenario-btn" onclick="showResponse(2)">
+            <span class="scenario-icon">🎓</span>
+            <span class="scenario-text">
+              <span class="scenario-label">Objeción de curva de aprendizaje</span>
+              "Mis operadores no saben usar software ni equipos como este."
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="scenario-btn" onclick="showResponse(3)">
+            <span class="scenario-icon">📐</span>
+            <span class="scenario-text">
+              <span class="scenario-label">Objeción de espacio / instalación</span>
+              "No sé si me entra en el taller ni si tengo la instalación eléctrica."
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="scenario-btn" onclick="showResponse(4)">
+            <span class="scenario-icon">⏳</span>
+            <span class="scenario-text">
+              <span class="scenario-label">Objeción de tiempo / urgencia</span>
+              "Déjame pensarlo, no tengo prisa para comprar ahorita."
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="scenario-btn" onclick="showResponse(5)">
+            <span class="scenario-icon">🏭</span>
+            <span class="scenario-text">
+              <span class="scenario-label">Pregunta técnica difícil</span>
+              "¿Puede cortar aluminio? ¿Y acero?"
+            </span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="response-panel" id="response-panel">
+        <h4>💡 Respuesta sugerida</h4>
+        <p id="response-text"></p>
+        <div class="tip">
+          <div class="tip-label">🎯 Técnica clave</div>
+          <div id="tip-text"></div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn-prev" onclick="goTo(4)">← Anterior</button>
+        <button class="btn-next" onclick="goTo(6)">Siguiente: Evaluación Final →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ MÓDULO 6: QUIZ ══════════════════ -->
+  <section class="module" id="module-6">
+    <div class="module-header">
+      <div class="module-tag">Módulo 7 de 7 — Evaluación Final</div>
+      <h1>Evaluación Final</h1>
+      <p>10 preguntas sobre todo lo que aprendiste. Recibirás retroalimentación inmediata en cada respuesta. ¡Ánimo!</p>
+    </div>
+    <div class="module-body">
+
+      <div id="quiz-container"></div>
+
+      <div class="quiz-result" id="quiz-result">
+        <div class="quiz-score" id="quiz-score-num"></div>
+        <div class="quiz-score-label">de 10 respuestas correctas</div>
+        <div class="quiz-msg" id="quiz-msg"></div>
+        <p style="font-size:13px;color:#6b7280;">Puedes repasar las respuestas arriba y volver a intentarlo cuando quieras.</p>
+        <button class="quiz-restart" onclick="restartQuiz()">🔄 Reintentar evaluación</button>
+      </div>
+
+      <div id="quiz-btn-wrap" style="text-align:center;margin-top:24px;">
+        <button class="quiz-submit" onclick="submitQuiz()">Calificar mi evaluación ✓</button>
+      </div>
+
+      <div class="module-nav" style="justify-content:flex-start;">
+        <button class="btn-prev" onclick="goTo(5)">← Anterior</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// ══════════════════ NAVIGATION ══════════════════
+const totalModules = 7;
+let visited = new Array(totalModules).fill(false);
+visited[0] = true;
+
+function goTo(n) {
+  document.querySelectorAll('.module').forEach((m,i) => {
+    m.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.nav-item').forEach((item,i) => {
+    item.classList.toggle('active', i === n);
+  });
+  visited[n] = true;
+  updateProgress();
+  window.scrollTo(0, 0);
+}
+
+function updateProgress() {
+  const count = visited.filter(Boolean).length;
+  const pct = Math.round((count / totalModules) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  visited.forEach((v, i) => {
+    const check = document.getElementById('check-' + i);
+    if (check) check.textContent = v ? '✓' : '';
+    const navItem = document.querySelector(`[data-module="${i}"]`);
+    if (navItem && v && !navItem.classList.contains('active')) {
+      navItem.classList.add('done');
+    }
+  });
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    goTo(parseInt(item.dataset.module));
+  });
+});
+
+// ══════════════════ FLASHCARDS ══════════════════
+const flashcards = [
+  { term: "¿Qué significa el número 1325 en Works1325?", answer: "El área de trabajo: 13 decímetros × 25 decímetros ≈ 122 × 244 cm, equivalente a una hoja estándar de 4' × 8'." },
+  { term: "¿De dónde es el motor principal HSD?", answer: "Italia (HSD Italy). 8HP de potencia, 24,000 RPM, refrigerado por aire. Es el motor estándar en ambos modelos Works y WorksB." },
+  { term: "¿Cuál es la diferencia entre Works y WorksB?", answer: "WorksB agrega un segundo motor (2HP · 18,000 RPM) especialmente para perforado y tallado frecuente. Ideal para producción mixta." },
+  { term: "¿Qué marca es la bomba de vacío y por qué importa?", answer: "Becker (Alemania), la más reconocida mundialmente en bombas de vacío. Garantiza succión confiable para sujetar el material sin que se mueva durante el corte." },
+  { term: "¿Cuál es la precisión de posicionamiento del Works?", answer: "±0.15 mm. Permite cortes repetibles con alta exactitud para producción en serie." },
+  { term: "¿Qué es VCarve Pro y quién lo fabrica?", answer: "Software CAD/CAM de Vectric (Inglaterra). Incluye capacidades 2D y 3D, vectorización automática de imágenes y optimización de trayectorias. Licencia original incluida con el equipo." },
+  { term: "¿Cuántos años de garantía incluye el Works1325?", answer: "2 años estándar (partes mecánicas, electrónicas y mano de obra). Se puede extender hasta 5 años totales. El colector de polvo y la bomba de vacío tienen 1 año." },
+  { term: "¿El equipo necesita estar conectado a una computadora para operar?", answer: "No. Incluye un controlador CNC manual. Los archivos se cargan por USB o se almacenan en la memoria interna del controlador." },
+];
+
+let currentCard = 0;
+let cardFlipped = false;
+
+function renderCard() {
+  const fc = flashcards[currentCard];
+  document.getElementById('fc-container').innerHTML = `
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="fc-label">Concepto ${currentCard + 1} de ${flashcards.length}</div>
+          <div class="fc-term">${fc.term}</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="fc-answer">${fc.answer}</div>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('fc-counter').textContent = (currentCard + 1) + ' / ' + flashcards.length;
+  cardFlipped = false;
+}
+
+function flipCard() {
+  const card = document.getElementById('flashcard');
+  cardFlipped = !cardFlipped;
+  card.classList.toggle('flipped', cardFlipped);
+}
+
+function nextCard() {
+  currentCard = (currentCard + 1) % flashcards.length;
+  renderCard();
+}
+
+function prevCard() {
+  currentCard = (currentCard - 1 + flashcards.length) % flashcards.length;
+  renderCard();
+}
+
+renderCard();
+
+// ══════════════════ OBJECTION SIMULATOR ══════════════════
+const responses = [
+  {
+    text: "Entiendo, y es una comparación válida que mucha gente hace. La pregunta clave es: ¿qué incluye ese precio? Un equipo más económico frecuentemente viene sin instalación, sin capacitación, con software pirata o limitado, y con soporte que tarda días o semanas. Con Asia Robótica, el precio incluye instalación profesional, capacitación de 2 días, software original VCarve Pro, garantía de 2 a 5 años y soporte telefónico gratuito de por vida. El costo real no es lo que pagas el día de la compra — es lo que pagas a lo largo de los próximos 5 años de producción.",
+    tip: "Desplaza la conversación del precio al costo total de propiedad. Nunca ataque al competidor directamente — deja que el cliente llegue solo a la conclusión."
+  },
+  {
+    text: "Esa es exactamente la pregunta correcta. Contamos con 25 ingenieros especializados en CNC distribuidos a nivel nacional, más stock de refacciones para envío inmediato. En muchos casos podemos resolver fallas en remoto, porque incluimos soporte con conexión a internet al software de su equipo. Y si se necesita visita en sitio, coordinamos de inmediato. Nuestros clientes no paran producción días esperando — eso hace la diferencia.",
+    tip: "Hazlo concreto: menciona los 25 ingenieros, el stock de refacciones y el soporte remoto. Los números específicos generan más confianza que afirmaciones genéricas."
+  },
+  {
+    text: "Es normal, y por eso incluimos 2 días de capacitación práctica en el sitio del cliente para hasta 4 personas. No es una presentación — es entrenamiento con el equipo ya instalado en su taller, usando sus propios materiales y diseños. Además, el soporte telefónico de por vida está disponible cuando tengan dudas, y podemos conectarnos de manera remota para guiarlos con el software. En pocas semanas su equipo va a estar operando con confianza.",
+    tip: "Transforma el miedo en un proceso claro. Dar los pasos concretos (2 días · 4 personas · soporte remoto) reduce la ansiedad mejor que solo decir 'no se preocupen'."
+  },
+  {
+    text: "Muy bien que lo preguntes ahora y no después de la compra. El equipo mide 122 × 244 cm más el espacio de los accesorios — necesita un área aproximada de 3 × 4 metros libres para operar con comodidad. Para la instalación eléctrica, necesitamos una salida trifásica de 220V a máximo 5 metros del equipo, con capacidad de 60 Amperes. Al cerrar el pedido te entregamos un manual de preparación del área con todas las especificaciones para que su electricista las tenga claras antes de que lleguemos.",
+    tip: "Da información concreta y facilita la acción siguiente. El cliente que pregunta sobre espacio ya está imaginando el equipo en su taller — ayúdalo a resolver el obstáculo, no a dudar."
+  },
+  {
+    text: "Claro, no hay presión. Lo que sí me gustaría preguntarte es: ¿qué información te haría falta para sentirte listo para tomar una decisión? A veces 'pensarlo' significa que hay una duda que no se ha resuelto todavía — y prefiero que me la digas para poder apoyarte bien. Si quieres, mientras tanto te invito a conocer nuestro showroom para ver el equipo en operación real.",
+    tip: "No presiones ni des descuentos falsos. Usa la respuesta para descubrir la objeción real que está detrás del 'déjame pensarlo'. El showroom es una herramienta poderosa como siguiente paso."
+  },
+  {
+    text: "El Works1325 está diseñado para materiales no metálicos: madera, MDF, acrílico, espuma, PVC, plásticos. Para aluminio blando se puede trabajar con brocas específicas y velocidades adecuadas, pero con limitaciones. Para acero, la respuesta es no — eso requiere una máquina de plasma CNC o un fresador CNC de husillo de acero, que son equipos completamente diferentes y de mayor inversión. ¿Tu cliente trabaja con metal? Si es así, tenemos equipos específicos para eso en nuestro portafolio.",
+    tip: "Honestidad técnica = confianza a largo plazo. Nunca exageres las capacidades del equipo. Si el cliente necesita algo diferente, redirige hacia el producto correcto — eso es lo que hace un asesor, no un vendedor."
+  }
+];
+
+function showResponse(idx) {
+  document.querySelectorAll('.scenario-btn').forEach((b,i) => b.classList.toggle('selected', i === idx));
+  const panel = document.getElementById('response-panel');
+  document.getElementById('response-text').textContent = responses[idx].text;
+  document.getElementById('tip-text').textContent = responses[idx].tip;
+  panel.classList.add('visible');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ══════════════════ QUIZ ══════════════════
+const quizData = [
+  {
+    q: "¿Qué área de trabajo tiene el Works1325?",
+    opts: ["3' × 6' (91 × 183 cm)", "4' × 8' (122 × 244 cm)", "5' × 10' (152 × 305 cm)", "2' × 4' (61 × 122 cm)"],
+    correct: 1,
+    feedback: "Correcto. 4' × 8' equivale a 122 × 244 cm, que es el tamaño de una hoja estándar de MDF o madera."
+  },
+  {
+    q: "¿Cuál es la diferencia principal entre el Works y el WorksB?",
+    opts: ["El WorksB tiene un área de trabajo más grande", "El WorksB incluye un segundo motor para perforado y tallado", "El WorksB tiene garantía extendida automática", "El WorksB usa refrigeración por agua en lugar de aire"],
+    correct: 1,
+    feedback: "Correcto. El WorksB agrega un segundo motor de 2HP a 18,000 RPM específicamente para operaciones de perforado y tallado frecuente."
+  },
+  {
+    q: "¿De qué país es el motor principal HSD del Works1325?",
+    opts: ["Alemania", "Japón", "Italia", "Estados Unidos"],
+    correct: 2,
+    feedback: "Correcto. HSD es una marca italiana de alta calidad reconocida en la industria CNC mundial."
+  },
+  {
+    q: "¿Cuál es la precisión de posicionamiento del Works1325?",
+    opts: ["±0.05 mm", "±0.15 mm", "±0.50 mm", "±1.00 mm"],
+    correct: 1,
+    feedback: "Correcto. ±0.15 mm permite cortes repetibles con alta exactitud, suficiente para la mayoría de aplicaciones industriales en madera y acrílico."
+  },
+  {
+    q: "¿Qué marca es la bomba de vacío incluida y de qué país es?",
+    opts: ["Siemens · Alemania", "Becker · Alemania", "HSD · Italia", "Vectric · Inglaterra"],
+    correct: 1,
+    feedback: "Correcto. Becker es la marca más reconocida mundialmente en bombas de vacío industriales."
+  },
+  {
+    q: "¿Cuántos años de garantía estándar incluye el Works1325?",
+    opts: ["1 año", "2 años", "3 años", "5 años"],
+    correct: 1,
+    feedback: "Correcto. 2 años estándar, con posibilidad de extenderla hasta 5 años totales."
+  },
+  {
+    q: "¿Cuál de los siguientes formatos de archivo NO es compatible con VCarve Pro?",
+    opts: ["DWG", "STL", "STEP / STP", "PDF"],
+    correct: 2,
+    feedback: "Correcto. VCarve Pro no importa STEP/STP nativamente. Compatible con DWG, DXF, AI, PDF, SVG, STL, OBJ, entre otros."
+  },
+  {
+    q: "El soporte telefónico de Asia Robótica para clientes del Works1325 es:",
+    opts: ["Gratuito por 1 año", "Gratuito por el periodo de garantía", "De pago según el plan contratado", "Gratuito e ilimitado de por vida"],
+    correct: 3,
+    feedback: "Correcto. El soporte telefónico es gratuito, ilimitado y de por vida para todos los clientes."
+  },
+  {
+    q: "¿Cuántas personas puede capacitar Asia Robótica en la instalación del equipo?",
+    opts: ["Máximo 2 personas · 1 día", "Máximo 4 personas · 2 días", "Máximo 6 personas · 3 días", "Sin límite de personas"],
+    correct: 1,
+    feedback: "Correcto. La capacitación incluye hasta 4 personas durante 2 días en el sitio del cliente."
+  },
+  {
+    q: "¿Cuál es el perfil de cliente principal para el Works1325?",
+    opts: ["Grandes corporativos de manufactura automotriz", "PyME de madera, mueblería, publicidad y acrílico", "Talleres de herrería y soldadura", "Fábricas de electrónicos"],
+    correct: 1,
+    feedback: "Correcto. El Works1325 está diseñado para materiales no metálicos: madera, MDF, acrílico. Su cliente natural es la PyME de mueblería, publicidad y ebanistería."
+  }
+];
+
+let userAnswers = new Array(10).fill(null);
+let quizSubmitted = false;
+
+function buildQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  quizData.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-question';
+    div.innerHTML = `
+      <div class="quiz-q-text"><span class="quiz-q-num">${qi + 1}.</span> ${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((opt, oi) => `
+          <button class="quiz-opt" onclick="selectAnswer(${qi}, ${oi})" id="q${qi}o${oi}">${opt}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-feedback" id="fb-${qi}"></div>
+    `;
+    container.appendChild(div);
+  });
+  userAnswers = new Array(10).fill(null);
+  quizSubmitted = false;
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-btn-wrap').style.display = 'block';
+}
+
+function selectAnswer(qi, oi) {
+  if (quizSubmitted) return;
+  userAnswers[qi] = oi;
+  // Clear selection for this question
+  quizData[qi].opts.forEach((_, i) => {
+    const btn = document.getElementById(`q${qi}o${i}`);
+    btn.style.fontWeight = '';
+    btn.style.borderColor = '';
+    btn.style.background = '';
+    btn.style.color = '';
+  });
+  // Mark selected
+  const sel = document.getElementById(`q${qi}o${oi}`);
+  sel.style.borderColor = '#393D42';
+  sel.style.background = '#f9fafb';
+  sel.style.fontWeight = '600';
+}
+
+function submitQuiz() {
+  const unanswered = userAnswers.findIndex(a => a === null);
+  if (unanswered !== -1) {
+    alert(`Aún no has respondido la pregunta ${unanswered + 1}. Completa todas las preguntas antes de calificar.`);
+    return;
+  }
+  quizSubmitted = true;
+  let score = 0;
+  quizData.forEach((q, qi) => {
+    const ua = userAnswers[qi];
+    q.opts.forEach((_, oi) => {
+      const btn = document.getElementById(`q${qi}o${oi}`);
+      btn.disabled = true;
+      if (oi === q.correct) btn.classList.add('reveal-correct');
+    });
+    const selBtn = document.getElementById(`q${qi}o${ua}`);
+    const fb = document.getElementById(`fb-${qi}`);
+    if (ua === q.correct) {
+      score++;
+      selBtn.classList.add('correct');
+      fb.className = 'quiz-feedback show ok';
+      fb.textContent = '✓ ' + q.feedback;
+    } else {
+      selBtn.classList.add('wrong');
+      fb.className = 'quiz-feedback show fail';
+      fb.textContent = '✗ Respuesta incorrecta. ' + q.feedback;
+    }
+  });
+  document.getElementById('quiz-btn-wrap').style.display = 'none';
+  const result = document.getElementById('quiz-result');
+  document.getElementById('quiz-score-num').textContent = score + '/10';
+  const msgs = [
+    [0, 4, "Sigue repasando los módulos anteriores — no hay prisa, el aprendizaje es un proceso. 💪"],
+    [5, 7, "¡Buen comienzo! Repasa los temas donde tuviste dudas y vuelve a intentarlo."],
+    [8, 9, "¡Excelente! Casi lista para hablar con confianza sobre el Works1325."],
+    [10, 10, "¡Perfecto! Dominas el Works1325. Estás lista para apoyar al equipo de ventas. 🎉"],
+  ];
+  const [,, msg] = msgs.find(([min, max]) => score >= min && score <= max);
+  document.getElementById('quiz-msg').textContent = msg;
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  buildQuiz();
+  document.querySelector('#module-6 .module-body').scrollIntoView({ behavior: 'smooth' });
+}
+
+buildQuiz();
+updateProgress();
+</script>
+</body>
+</html>
